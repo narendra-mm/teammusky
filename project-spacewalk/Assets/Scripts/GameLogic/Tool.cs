@@ -7,6 +7,8 @@ namespace SpaceWalk.GameLogic
     {
         [SerializeField] private ToolType _toolType;
         [SerializeField] private float _releaseForce;
+
+        private bool _interacting;
         private Vector3 _prevMousePos;
         private Rigidbody2D _rigidBody;
         // Start is called before the first frame update
@@ -23,15 +25,21 @@ namespace SpaceWalk.GameLogic
 
         private void OnMouseExit()
         {
+            if (!_interacting) return;
             var position = GetMousePositionInWorld();
             var direction = (position - _prevMousePos);
             _rigidBody.velocity = Vector3.zero;
             _rigidBody.AddForce(direction * _releaseForce);
-
+            _interacting = false;
             Debug.Log("Direction: " + direction);
         }
         private void OnMouseOver()
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _interacting = true;
+            }
+            if (!_interacting) return;
             var position = GetMousePositionInWorld();
             transform.localPosition = position;
             _prevMousePos = position;
