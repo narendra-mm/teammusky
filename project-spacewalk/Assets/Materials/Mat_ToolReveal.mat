@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_ToolReveal
   m_Shader: {fileID: 4800000, guid: d8b1ef483aa617b49b94faa127001ff8, type: 3}
-  m_ShaderKeywords: _TOGGLESWITCH0_ON _TOGGLETOOL_ON _XRAY_ON
+  m_ShaderKeywords: _TOGGLESWITCH0_ON _XRAY_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -45,8 +45,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DifferenceThreshold: 0.0104
+    - _Mask: 0
     - _ToggleSwitch0: 1
-    - _ToggleTool: 1
+    - _ToggleTool: 0
     - _Xray: 1
     - __dirty: 0
     m_Colors:
