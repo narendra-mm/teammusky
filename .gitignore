@@ -5,6 +5,7 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 Assets/Test*
+project-spacewalk/Assets/Test*
 
 # Visual Studio (code)
 **/.vs/
@@ -47,3 +48,4 @@ Assets/ATT/Images.meta
 Assets/Editor.meta
 Assets/Test.meta
 project-spacewalk/Assets/Test.meta
+project-spacewalk/Assets/_TerrainAutoUpgrade*
