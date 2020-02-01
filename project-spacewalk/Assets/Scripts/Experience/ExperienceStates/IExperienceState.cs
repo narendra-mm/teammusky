@@ -1,4 +1,4 @@
-﻿namespace GoogleRCS.Experience.ExperienceState
+﻿namespace Experience.ExperienceState
 {
     public interface IExperienceState 
     {

@@ -1,7 +1,7 @@
-﻿using GoogleRCS.Experience.ExperienceState;
+﻿using Experience.ExperienceState;
 using UnityEngine;
 
-namespace GoogleRCS.Experience
+namespace Experience
 {
 	[RequireComponent(typeof(ExperienceStateManager))]
 	public class ExperienceController : MonoBehaviour
@@ -14,6 +14,7 @@ namespace GoogleRCS.Experience
 			_experienceStateManager = GetComponent<ExperienceStateManager>();
 			var states = transform.GetComponentsInChildren<IExperienceState>();
 			_experienceStateManager.Setup(states);
+            _experienceStateManager.TransitionTo<IntroState>();
 			Debug.Log($"Current state is {_experienceStateManager.CurrentState.GetType()}");
 		}
 	}
