@@ -24,7 +24,6 @@ public class GrabbableItem : MonoBehaviour
 
     private void TryGrab()
     {
-        Debug.Log("Grabbing: " + _isGrabbing + ", Ovelaping: " + _isOverlappingHand);
         if (_isGrabbing && _isOverlappingHand)
         {
             if (lightFader != null)

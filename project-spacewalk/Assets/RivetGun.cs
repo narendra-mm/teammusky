@@ -18,7 +18,6 @@ public class RivetGun : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown("space")) {
-            Debug.Log("space was pressed");
             PlaceRivet();
         }
     }
