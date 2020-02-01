@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GoogleRCS.Experience.ExperienceState
+namespace Experience.ExperienceState
 {
 	public class DamageWireState : MonoBehaviour, IExperienceState
 	{

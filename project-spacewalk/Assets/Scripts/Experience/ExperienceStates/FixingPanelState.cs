@@ -1,7 +1,7 @@
 ﻿using SpaceWalk.GameLogic;
 using UnityEngine;
 
-namespace GoogleRCS.Experience.ExperienceState
+namespace Experience.ExperienceState
 {
 	public class FixingPanelState : MonoBehaviour, IExperienceState
 	{

@@ -1,7 +1,7 @@
-﻿using GoogleRCS.Experience.ExperienceState;
+﻿using Experience.ExperienceState;
 using UnityEngine;
 
-namespace GoogleRCS.Experience
+namespace Experience
 {
 	[RequireComponent(typeof(ExperienceStateManager))]
 	public class ExperienceController : MonoBehaviour
