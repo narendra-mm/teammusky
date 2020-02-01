@@ -30,7 +30,8 @@ public class RivetGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        var grabbableItem = GetComponent<GrabbableItem>();
+        if (Input.GetKeyDown("space") && grabbableItem != null && grabbableItem.IsGrabbed())
         {
             PlaceRivet();
         }
@@ -55,7 +56,6 @@ public class RivetGun : MonoBehaviour
         }
 
         GameObject go = Instantiate(rivetPrefab, position, Quaternion.identity);
-        placedRivets.Add(go.transform);
         Collider2D[] col = Physics2D.OverlapPointAll(position);
         bool hitFrame = false;
         bool hitOxygen = false;
@@ -81,6 +81,7 @@ public class RivetGun : MonoBehaviour
         var hitTypes = new List<String>();
         if (hitFrame)
         {
+            placedRivets.Add(go.transform);
             hitTypes.Add("Frame");
         }
         if (hitOxygen)

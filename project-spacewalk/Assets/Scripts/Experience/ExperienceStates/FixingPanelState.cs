@@ -9,6 +9,8 @@ namespace Experience.ExperienceState
 	{
         [SerializeField] private Transform _toolsRoot;
         [SerializeField] private RivetGun _rivetGun;
+        [SerializeField] private OxygenCounter _oxygenCounter;
+        [SerializeField] private GameObject _hud;
         // [SerializeField] private Panel _panel;
 
         private ItemController[] _tools;
@@ -23,6 +25,8 @@ namespace Experience.ExperienceState
             _tools = _toolsRoot.GetComponentsInChildren<ItemController>();
 
             _rivetGun.OnRivetPlaced = OnRivetPlaced;
+            _oxygenCounter.SetIsRunning(true);
+            _hud.active = false;
             // if(_tools == null)
             // {
             //     Debug.LogError("Tools components are missing");
@@ -46,6 +50,7 @@ namespace Experience.ExperienceState
             foreach (var tool in _tools) {
                 tool.EnableInputs();
             }
+            _hud.active = true;
         }
 
         public void UpdateState()
@@ -58,6 +63,7 @@ namespace Experience.ExperienceState
             foreach (var tool in _tools) {
                 tool.DisableInputs();
             }
+            _hud.active = false;
             // Debug.Log($"Exited {this.GetType()}");
         }
 
