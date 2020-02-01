@@ -1,5 +1,5 @@
-﻿using System;
-using Experience.ExperienceState;
+﻿using Experience.ExperienceState;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Experience
@@ -10,7 +10,9 @@ namespace Experience
 		public enum States
 		{
 			Intro,
-			Fixing
+			Fixing,
+            DamageWire,
+            DamagePipe
 		}
 
 		public States DefaultState = States.Intro;
@@ -32,8 +34,16 @@ namespace Experience
 					case States.Fixing:
 						_experienceStateManager.TransitionTo<FixingPanelState>();
 					break;
+                case States.DamageWire:
+                    _experienceStateManager.TransitionTo<DamageWireState>();
+                    break;
+                case States.DamagePipe:
+                    _experienceStateManager.TransitionTo<DamagePipeState>();
+                    break;
 
-			}
+            }
+
+
 
 			Debug.Log($"Current state is {_experienceStateManager.CurrentState.GetType()}");
 		}
