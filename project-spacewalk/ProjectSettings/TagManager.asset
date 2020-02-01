@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Hand
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - UI
   - 
   - 
-  - Wire
-  - Pipe
-  - 
+  - Electric
+  - Oxygen
+  - Frame
   - 
   - 
   - 
@@ -38,6 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: StarSytem
+    uniqueID: 643470821
+    locked: 0
+  - name: SpaceStation
+    uniqueID: 3569910263
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
