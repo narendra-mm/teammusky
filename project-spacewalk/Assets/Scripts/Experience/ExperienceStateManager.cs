@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Experience.ExperienceState;
+using System;
 using System.Collections.Generic;
-using GoogleRCS.Experience.ExperienceState;
 using UnityEngine;
 
-namespace GoogleRCS.Experience
+namespace Experience
 {
     public class ExperienceStateManager : MonoBehaviour
     {

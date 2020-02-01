@@ -1,7 +1,6 @@
-﻿using GoogleRCS.Experience.ExperienceState;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace GoogleRCS.Experience
+namespace Experience.ExperienceState
 {
 	[RequireComponent(typeof(ExperienceStateManager))]
 	public class ToolPickupExperienceController : MonoBehaviour
