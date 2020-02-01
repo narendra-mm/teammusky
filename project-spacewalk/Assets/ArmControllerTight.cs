@@ -10,6 +10,8 @@ public class ArmControllerTight : MonoBehaviour
     [SerializeField] private Vector2 ikOffset;
 
     [SerializeField] private float speed = 2f;
+
+	[SerializeField] private Camera _camera;
     public Rigidbody2D rb2D;
 
     // Start is called before the first frame update
@@ -21,7 +23,7 @@ public class ArmControllerTight : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 targetPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 deltaPosition = targetPosition - (Vector2)ik.position;
         // if(deltaPosition.magnitude > 2f) {
         //     rb2D.AddForce(deltaPosition.normalized * speed);

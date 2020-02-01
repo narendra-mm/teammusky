@@ -24,6 +24,7 @@ namespace Experience.ExperienceState
 
         public void ExitState()
         {
+			gameObject.SetActive(false);
             Debug.Log($"Exited {this.GetType()}");
         }
 
