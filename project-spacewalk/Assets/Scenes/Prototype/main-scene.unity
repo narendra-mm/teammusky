@@ -1207,7 +1207,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1194558683
@@ -2440,7 +2440,7 @@ GameObject:
   - component: {fileID: 2129724406}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3070,6 +3070,7 @@ MonoBehaviour:
   constraintSize: {x: 14, y: 7}
   ikOffset: {x: 0, y: 0}
   speed: 4
+  _camera: {fileID: 2129724403}
   rb2D: {fileID: 0}
 --- !u!4 &8244911499665862672
 Transform:
