@@ -11,6 +11,7 @@ namespace Experience.ExperienceState
         private ItemController[] _tools;
         public void InitializeState(ExperienceStateManager context)
         {
+			gameObject.SetActive(false);
             Debug.Log($"Initialised {this.GetType()}");
             if(_toolsRoot == null)
             {
@@ -32,6 +33,7 @@ namespace Experience.ExperienceState
 
         public void EnterState()
         {
+			gameObject.SetActive(true);
             // Debug.Log($"Entered {this.GetType()}");
             foreach (var tool in _tools) {
                 tool.EnableInputs();
