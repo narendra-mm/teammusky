@@ -1,11 +1,14 @@
 ﻿using SpaceWalk.GameLogic;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 namespace Experience.ExperienceState
 {
 	public class FixingPanelState : MonoBehaviour, IExperienceState
 	{
         [SerializeField] private Transform _toolsRoot;
+        [SerializeField] private RivetGun _rivetGun;
         // [SerializeField] private Panel _panel;
 
         private ItemController[] _tools;
@@ -19,6 +22,7 @@ namespace Experience.ExperienceState
             }
             _tools = _toolsRoot.GetComponentsInChildren<ItemController>();
 
+            _rivetGun.OnRivetPlaced = OnRivetPlaced;
             // if(_tools == null)
             // {
             //     Debug.LogError("Tools components are missing");
@@ -29,6 +33,10 @@ namespace Experience.ExperienceState
             //     tool.OnToolGrabbed += HandleToolGrabbed;
             // }
 
+        }
+
+        private void OnRivetPlaced(List<String> rivetTypes) {
+            Debug.Log(rivetTypes[0]);
         }
 
         public void EnterState()

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hand
+  - Frame
+  - Oxygen
+  - Electric
   layers:
   - Default
   - TransparentFX
