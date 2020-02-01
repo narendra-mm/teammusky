@@ -11,7 +11,8 @@ public class ItemController : MonoBehaviour
     public float minDistance = 1f;
     private Rigidbody2D rb2D;
 
-    private bool isGrabbed = false;
+    private bool _isGrabbed = false;
+    private bool _allowInputs = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,25 @@ public class ItemController : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
+    public void EnableInputs()
+    {
+        _isGrabbed = false;
+        _allowInputs = true;
+    }
+
+    public void DisableInputs()
+    {
+        _isGrabbed = false;
+        _allowInputs = false;
+    }
+
     void OnMouseDown()
     {
-        isGrabbed = true;
+        if (!_allowInputs)
+        {
+            return;
+        }
+        _isGrabbed = true;
         if (!alwaysActive && lightFader != null)
         {
             lightFader.SetTargetIntensity(_activeIntensity);
@@ -30,9 +47,14 @@ public class ItemController : MonoBehaviour
 
     void Update()
     {
+        if (!_allowInputs)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
-            isGrabbed = false;
+            _isGrabbed = false;
             if (!alwaysActive && lightFader != null)
             {
                 lightFader.SetTargetIntensity(0);
@@ -46,7 +68,7 @@ public class ItemController : MonoBehaviour
         {
             lightFader.SetTargetIntensity(_activeIntensity);
         }
-        if (!isGrabbed)
+        if (!_isGrabbed)
         {
             return;
         }
