@@ -14,6 +14,7 @@ namespace Experience
 			_experienceStateManager = GetComponent<ExperienceStateManager>();
 			var states = transform.GetComponentsInChildren<IExperienceState>();
 			_experienceStateManager.Setup(states);
+            _experienceStateManager.TransitionTo<IntroState>();
 			Debug.Log($"Current state is {_experienceStateManager.CurrentState.GetType()}");
 		}
 	}
