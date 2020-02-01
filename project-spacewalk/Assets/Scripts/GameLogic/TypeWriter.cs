@@ -5,6 +5,7 @@ using UnityEngine;
 namespace SpaceWalk.GameLogic
 {
     [RequireComponent(typeof(TMP_Text))]
+    [ExecuteInEditMode]
     public class TypeWriter : MonoBehaviour
     {
         [Range(0,1)]
