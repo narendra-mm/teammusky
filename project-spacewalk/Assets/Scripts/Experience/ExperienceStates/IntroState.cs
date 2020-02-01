@@ -8,12 +8,14 @@ namespace Experience.ExperienceState
         private ExperienceStateManager _context;
         public void InitializeState(ExperienceStateManager context)
         {
+			gameObject.SetActive(false);
             _context = context;
             Debug.Log($"Initialised {this.GetType()}");
         }
 
         public void EnterState()
         {
+			gameObject.SetActive(true);
             Debug.Log($"Entered {this.GetType()}");
         }
 
