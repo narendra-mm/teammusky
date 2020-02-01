@@ -81,7 +81,7 @@ public class GrabbableItem : MonoBehaviour
     {
         if (_isGrabbed && _grabbedBy != null)
         {
-            transform.position = _grabbedBy.position;
+            transform.position = new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z);
         }
     }
 }
