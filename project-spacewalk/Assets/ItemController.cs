@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
+    [SerializeField] private float _activeIntensity;
 
     public LightFader lightFader;
     public bool alwaysActive = true;
@@ -25,7 +24,7 @@ public class ItemController : MonoBehaviour
         isGrabbed = true;
         if (!alwaysActive && lightFader != null)
         {
-            lightFader.SetTargetIntensity(8);
+            lightFader.SetTargetIntensity(_activeIntensity);
         }
     }
 
@@ -45,7 +44,7 @@ public class ItemController : MonoBehaviour
     {
         if (alwaysActive && lightFader != null)
         {
-            lightFader.SetTargetIntensity(8);
+            lightFader.SetTargetIntensity(_activeIntensity);
         }
         if (!isGrabbed)
         {
