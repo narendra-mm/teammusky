@@ -3,6 +3,9 @@
 public class GrabbableItem : MonoBehaviour
 {
     [SerializeField] private float _activeIntensity = 8.5f;
+
+    public bool AlwaysOn = false;
+
     public LightFader lightFader;
 
     private Rigidbody2D rb2D;
@@ -20,13 +23,17 @@ public class GrabbableItem : MonoBehaviour
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         collider = gameObject.GetComponent<Collider2D>();
+        if (lightFader != null && AlwaysOn)
+        {
+            lightFader.SetTargetIntensity(_activeIntensity);
+        }
     }
 
     private void TryGrab()
     {
         if (_isGrabbing && _isOverlappingHand)
         {
-            if (lightFader != null)
+            if (lightFader != null && !AlwaysOn)
             {
                 lightFader.SetTargetIntensity(_activeIntensity);
             }
@@ -66,7 +73,7 @@ public class GrabbableItem : MonoBehaviour
             if (_grabbedBy != null && _isGrabbed)
             {
                 rb2D.velocity = FindObjectsOfType<ArmControllerTight>()[0].rb2D.velocity;
-                if (lightFader != null)
+                if (lightFader != null && !AlwaysOn)
                 {
                     lightFader.SetTargetIntensity(0);
                 }
