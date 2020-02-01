@@ -45,7 +45,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DifferenceThreshold: 0.0104
-    - _Mask: 0
+    - _Mask: 1
     - _ToggleSwitch0: 1
     - _ToggleTool: 0
     - _Xray: 1

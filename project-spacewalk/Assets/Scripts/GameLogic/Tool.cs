@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace SpaceWalk.GameLogic
 {
@@ -7,6 +8,8 @@ namespace SpaceWalk.GameLogic
     {
         [SerializeField] private ToolType _toolType;
         [SerializeField] private float _releaseForce;
+
+        public Action<ToolType> OnToolGrabbed;
 
         private bool _interacting;
         private Vector3 _prevMousePos;
@@ -38,6 +41,7 @@ namespace SpaceWalk.GameLogic
             if (Input.GetMouseButtonDown(0))
             {
                 _interacting = true;
+                OnToolGrabbed?.Invoke(_toolType);
             }
             if (!_interacting) return;
             var position = GetMousePositionInWorld();
