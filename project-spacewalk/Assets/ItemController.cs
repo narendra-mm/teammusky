@@ -2,7 +2,7 @@
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] private float _activeIntensity;
+    [SerializeField] private float _activeIntensity = 8.5f;
 
     public LightFader lightFader;
     public bool alwaysActive = true;
