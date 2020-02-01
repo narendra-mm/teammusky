@@ -5,8 +5,10 @@ namespace Experience.ExperienceState
 {
 	public class IntroState : MonoBehaviour, IExperienceState
 	{
+        private ExperienceStateManager _context;
         public void InitializeState(ExperienceStateManager context)
         {
+            _context = context;
             Debug.Log($"Initialised {this.GetType()}");
         }
 
@@ -28,6 +30,10 @@ namespace Experience.ExperienceState
         public void DisposeState()
 		{
 			Debug.Log($"Disposed {this.GetType()}");
+        }
+        public void TimelineEnded()
+        {
+            _context.TransitionToNext();
         }
 	}
 }
