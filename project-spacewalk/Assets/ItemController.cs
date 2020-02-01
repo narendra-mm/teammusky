@@ -5,7 +5,9 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
 
-    public float grabRange = .5f;
+    public LightFader lightFader;
+    public bool alwaysActive = true;
+
     public float maxSpeed = 1f;
     public float minDistance = 1f;
     private Rigidbody2D rb2D;
@@ -18,25 +20,33 @@ public class ItemController : MonoBehaviour
         rb2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
+    void OnMouseDown()
+    {
+        isGrabbed = true;
+        if (!alwaysActive && lightFader != null)
+        {
+            lightFader.SetTargetIntensity(8);
+        }
+    }
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 deltaPosition = mousePosition - (Vector2)transform.position;
-            if (deltaPosition.magnitude < grabRange)
-            {
-                isGrabbed = true;
-            }
-        }
         if (Input.GetMouseButtonUp(0))
         {
             isGrabbed = false;
+            if (!alwaysActive && lightFader != null)
+            {
+                lightFader.SetTargetIntensity(0);
+            }
         }
     }
 
     void FixedUpdate()
     {
+        if (alwaysActive && lightFader != null)
+        {
+            lightFader.SetTargetIntensity(8);
+        }
         if (!isGrabbed)
         {
             return;
