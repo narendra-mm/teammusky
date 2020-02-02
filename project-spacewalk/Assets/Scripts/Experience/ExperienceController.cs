@@ -9,9 +9,12 @@ namespace Experience
 	{
 		public enum States
 		{
+            SplashScreen,
 			Intro,
 			Fixing,
-            DamageShip
+            DamageShip,
+            Outro,
+            EndScreen
 		}
 
 		public States DefaultState = States.Intro;
@@ -27,6 +30,9 @@ namespace Experience
 
 			switch (DefaultState)
 			{
+                case States.SplashScreen:
+                    _experienceStateManager.TransitionTo<SplashScreenState>();
+                    break;
 					case States.Intro:
 						_experienceStateManager.TransitionTo<IntroState>();
 						break;
