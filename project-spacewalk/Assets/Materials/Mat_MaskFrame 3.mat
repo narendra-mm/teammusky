@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat_MaskFrame
+  m_Name: Mat_MaskFrame 3
   m_Shader: {fileID: 4800000, guid: e428d202d2b7031408989f26cb5b6f49, type: 3}
   m_ShaderKeywords: _TOGGLESWITCH0_ON _XRAY_ON
   m_LightmapFlags: 1
@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tool1Mask:
-        m_Texture: {fileID: 2800000, guid: 18f254a2340862b4b9897a7897d0695a, type: 3}
+        m_Texture: {fileID: 2800000, guid: e06edbe683950c440b5254e41152a75b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tool2:

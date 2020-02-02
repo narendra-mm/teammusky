@@ -8,6 +8,7 @@ TagManager:
   - Frame
   - Oxygen
   - Electric
+  - PatchPanel
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,13 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Steam
+    uniqueID: 1470916947
+    locked: 0
+  - name: Tools
+    uniqueID: 1528112697
+    locked: 0
+  - name: Astronaut
+    uniqueID: 1013654937
     locked: 0

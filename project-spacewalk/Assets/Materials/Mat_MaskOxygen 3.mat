@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat_MaskElectric
+  m_Name: Mat_MaskOxygen 3
   m_Shader: {fileID: 4800000, guid: e428d202d2b7031408989f26cb5b6f49, type: 3}
   m_ShaderKeywords: _TOGGLESWITCH0_ON _XRAY_ON
   m_LightmapFlags: 1
@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tool1Mask:
-        m_Texture: {fileID: 2800000, guid: 696b07d5206cda244872ecaed9657a4f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6650dfebef0a48f43acbaa0d90b2aed0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tool2:
@@ -52,4 +52,4 @@ Material:
     - _Xray: 1
     - __dirty: 0
     m_Colors:
-    - _ColortoBeFiltered: {r: 0, g: 1, b: 1, a: 1}
+    - _ColortoBeFiltered: {r: 0, g: 1, b: 0, a: 1}
