@@ -12,6 +12,8 @@ public class ArmControllerTight : MonoBehaviour
     [SerializeField] private float speed = 2f;
 
 	[SerializeField] private Camera _camera;
+
+    private bool _enableInputs = false;
     public Rigidbody2D rb2D;
 
     // Start is called before the first frame update
@@ -20,9 +22,22 @@ public class ArmControllerTight : MonoBehaviour
         rb2D = ik.GetComponent<Rigidbody2D>();
     }
 
+    public void EnableInputs()
+    {
+        _enableInputs = true;
+    }
+
+    public void DisableInputs()
+    {
+        _enableInputs = false;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!_enableInputs) {
+            return;
+        }
         Vector2 targetPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 deltaPosition = targetPosition - (Vector2)ik.position;
         // if(deltaPosition.magnitude > 2f) {
