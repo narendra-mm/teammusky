@@ -3,6 +3,7 @@
 public class GrabbableItem : MonoBehaviour
 {
     [SerializeField] private float _activeIntensity = 8.5f;
+    [SerializeField] private Transform _anchor;
 
     public bool AlwaysOn = false;
 
@@ -76,7 +77,9 @@ public class GrabbableItem : MonoBehaviour
         {
             if (_grabbedBy != null && _isGrabbed)
             {
-                rb2D.velocity = FindObjectsOfType<ArmControllerTight>()[0].rb2D.velocity;
+                var arm = FindObjectsOfType<ArmControllerTight>()[0].rb2D;
+                rb2D.velocity = arm.velocity;
+                rb2D.angularVelocity = arm.angularVelocity;
                 if (lightFader != null && !AlwaysOn)
                 {
                     lightFader.SetTargetIntensity(0);
@@ -91,7 +94,15 @@ public class GrabbableItem : MonoBehaviour
     {
         if (_isGrabbed && _grabbedBy != null)
         {
-            transform.position = new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z);
+            Vector3 offset = Vector3.zero;
+            Vector3 rotation = transform.rotation.eulerAngles;
+            Vector3 rotationOffset = Vector3.zero;
+            if(_anchor != null) {
+                offset = transform.position - _anchor.position;
+                rotationOffset = transform.rotation.eulerAngles - _anchor.rotation.eulerAngles;
+            }
+            transform.eulerAngles = _grabbedBy.rotation.eulerAngles + rotationOffset;
+            transform.position = new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + offset;
         }
     }
 }
