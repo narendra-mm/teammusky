@@ -8,6 +8,7 @@ TagManager:
   - Frame
   - Oxygen
   - Electric
+  - PatchPanel
   layers:
   - Default
   - TransparentFX
