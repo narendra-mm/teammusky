@@ -94,15 +94,21 @@ public class GrabbableItem : MonoBehaviour
     {
         if (_isGrabbed && _grabbedBy != null)
         {
-            Vector3 offset = Vector3.zero;
-            Vector3 rotation = transform.rotation.eulerAngles;
-            Vector3 rotationOffset = Vector3.zero;
-            if(_anchor != null) {
-                offset = transform.position - _anchor.position;
-                rotationOffset = transform.rotation.eulerAngles - _anchor.rotation.eulerAngles;
-            }
-            transform.eulerAngles = _grabbedBy.rotation.eulerAngles + rotationOffset;
-            transform.position = new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + offset;
+            Vector3 myRotation = transform.rotation.eulerAngles;
+            Vector3 handRotation = _grabbedBy.rotation.eulerAngles;
+            Vector3 offsetRotation = _anchor.rotation.eulerAngles;
+            Vector3 newRotation = new Vector3(0f, 0f, handRotation.z - myRotation.z - (myRotation.z - offsetRotation.z));
+            Debug.Log("My: "+ myRotation + ", Hand: "+ handRotation + ", New: "+ newRotation);
+            
+            transform.Rotate(newRotation, Space.World);
+
+            Vector3 transformOffset = transform.position - _anchor.position;
+
+            // Snap to position
+            transform.position = new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + transformOffset;
+
+            // Move to position, so we get some physic interactions
+            // rb2D.MovePosition(new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + transformOffset);
         }
     }
 }

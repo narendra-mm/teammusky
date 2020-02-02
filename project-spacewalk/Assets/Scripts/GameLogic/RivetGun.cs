@@ -8,7 +8,7 @@ using SpaceWalk.GameLogic;
 public class RivetGun : MonoBehaviour
 {
 
-    public float MinimumDistanceBetweenRivets = 2f;
+    public float MinimumDistanceBetweenRivets = 1.5f;
 
     [SerializeField] private Transform muzzle;
     [SerializeField] private GameObject rivetPrefab;
@@ -16,6 +16,8 @@ public class RivetGun : MonoBehaviour
     public Action<List<ShipMaterial>> OnRivetPlaced;
 
     List<Transform> placedRivets;
+
+    public bool EnableInputs = false;
 
     void Awake()
     {
@@ -31,6 +33,10 @@ public class RivetGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!EnableInputs) {
+            return;
+        }
+
         var grabbableItem = GetComponent<GrabbableItem>();
         if (Input.GetKeyDown("space") && grabbableItem != null && grabbableItem.IsGrabbed())
         {
