@@ -11,6 +11,8 @@ namespace Experience.ExperienceState
         [SerializeField] private RivetGun _rivetGun;
         [SerializeField] private OxygenCounter _oxygenCounter;
         [SerializeField] private GameObject _hud;
+        [SerializeField] private ArmControllerTight _arm;
+        [SerializeField] private HandAnimator _hand;
 
         [SerializeField] private GameObject[] _patchPanels;
         [SerializeField] private GameObject[] _frames;
@@ -19,7 +21,7 @@ namespace Experience.ExperienceState
 
         // [SerializeField] private Panel _panel;
         private ExperienceStateManager _context;
-        private ItemController[] _tools;
+        private GrabbableItem[] _tools;
         public void InitializeState(ExperienceStateManager context)
         {
             _context = context;
@@ -29,7 +31,7 @@ namespace Experience.ExperienceState
             {
                 Debug.LogError("Provide root transform for tools.");
             }
-            _tools = _toolsRoot.GetComponentsInChildren<ItemController>();
+            _tools = _toolsRoot.GetComponentsInChildren<GrabbableItem>();
 
             _rivetGun.OnRivetPlaced = OnRivetPlaced;
             _oxygenCounter.OnOxygenDepleted = OnOxygenDepleted;
@@ -68,6 +70,7 @@ namespace Experience.ExperienceState
             }
             else if (containsPipe)
             {
+                _oxygenCounter.AddOxygenLossPerSecond(1.5f);
                 GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
                 _context.TransitionTo<DamageShipState>();
             }
@@ -87,6 +90,8 @@ namespace Experience.ExperienceState
             {
                 tool.EnableInputs();
             }
+            _arm.EnableInputs();
+            _hand.EnableInputs();
             _hud.active = true;
             _rivetGun.EnableInputs = true;
             _oxygenCounter.SetIsRunning(true);
@@ -103,6 +108,8 @@ namespace Experience.ExperienceState
             {
                 tool.DisableInputs();
             }
+            _arm.DisableInputs();
+            _hand.DisableInputs();
             _hud.active = false;
             _rivetGun.EnableInputs = false;
             _oxygenCounter.SetIsRunning(false);

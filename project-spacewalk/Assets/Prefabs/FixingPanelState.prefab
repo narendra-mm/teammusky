@@ -661,6 +661,8 @@ MonoBehaviour:
   _rivetGun: {fileID: 1101241663484491676}
   _oxygenCounter: {fileID: 4268634149771906138}
   _hud: {fileID: 8491024344756569639}
+  _arm: {fileID: 9017237960198537864}
+  _hand: {fileID: 9017237960711717782}
   _patchPanels:
   - {fileID: 4531066264149280031}
   - {fileID: 3377845994500383161}
@@ -690,7 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oxygenCount: 100
-  oxygenLossPerSecond: 0.5
+  oxygenLossPerSecond: 1
   text: {fileID: 5960751540624448639}
 --- !u!1 &1101241662164941098
 GameObject:
@@ -8150,15 +8152,15 @@ MonoBehaviour:
     m_SolverPoses:
     - m_BoneTransform: {fileID: 9017237960717388687}
       solverPosition: {x: 0, y: 0, z: 0}
-      solverRotation: {x: 0, y: 0, z: -0.83835846, w: 0.5451193}
+      solverRotation: {x: 0, y: 0, z: -0.83835846, w: 0.54511935}
       defaultLocalRotation: {x: 0, y: 0, z: 0.92992944, w: 0.36773816}
     - m_BoneTransform: {fileID: 9017237960495435787}
       solverPosition: {x: 0, y: 0, z: 0}
-      solverRotation: {x: 0, y: 0, z: -0.65414095, w: 0.7563727}
+      solverRotation: {x: 0, y: 0, z: -0.654141, w: 0.75637263}
       defaultLocalRotation: {x: 0, y: 0, z: -0.6117951, w: 0.79101634}
     m_Weight: 1
     m_RestoreDefaultPose: 1
-    targetPosition: {x: -5.89, y: -3.27, z: -7}
+    targetPosition: {x: -8.84, y: -3.66, z: -7}
     flip: 1
 --- !u!50 &9017237960168556427
 Rigidbody2D:
