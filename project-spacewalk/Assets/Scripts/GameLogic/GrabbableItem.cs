@@ -127,9 +127,9 @@ public class GrabbableItem : MonoBehaviour
 
             // Snap to position
             transform.position = new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + transformOffset;
+            // rb2D.MovePosition(new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + transformOffset);
 
             // Move to position, so we get some physic interactions
-            // rb2D.MovePosition(new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + transformOffset);
         }
     }
 }

@@ -58,28 +58,35 @@ namespace Experience.ExperienceState
 
         }
 
+        private int health = 3;
         private void OnRivetPlaced(List<ShipMaterial> rivetTypes)
         {
 
             var containsWire = rivetTypes.Contains(ShipMaterial.Wire);
             var containsPipe = rivetTypes.Contains(ShipMaterial.Pipe);
-            if (containsWire)
+            if (containsPipe)
             {
+                health--;
+                GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
+                _context.TransitionTo<DamageShipState>();
+                _oxygenCounter.AddOxygenLossPerSecond(1.5f);
+            }
+            else if (containsWire)
+            {
+                health--;
                 GameState.instance.DamagedMaterial = ShipMaterial.Wire;
                 _context.TransitionTo<DamageShipState>();
             }
-            else if (containsPipe)
-            {
-                _oxygenCounter.AddOxygenLossPerSecond(1.5f);
-                GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
-                _context.TransitionTo<DamageShipState>();
+            if (health <= 0) {
+                GameState.instance.EndStory = EndGameType.ExplodeShip;
+                _context.TransitionTo<EndState>();
             }
-
         }
 
         private void OnOxygenDepleted() {
-            GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
-            _context.TransitionTo<DamageShipState>();
+            // GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
+            GameState.instance.EndStory = EndGameType.ExplodeShip;
+            _context.TransitionTo<EndState>();
         }
 
         public void EnterState()
