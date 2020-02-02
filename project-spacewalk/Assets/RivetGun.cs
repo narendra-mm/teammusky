@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using SpaceWalk.GameLogic;
 
 public class RivetGun : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class RivetGun : MonoBehaviour
     [SerializeField] private Transform muzzle;
     [SerializeField] private GameObject rivetPrefab;
 
-    public Action<List<String>> OnRivetPlaced;
+    public Action<List<ShipMaterial>> OnRivetPlaced;
 
     List<Transform> placedRivets;
 
@@ -30,7 +31,8 @@ public class RivetGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        var grabbableItem = GetComponent<GrabbableItem>();
+        if (Input.GetKeyDown("space") && grabbableItem != null && grabbableItem.IsGrabbed())
         {
             PlaceRivet();
         }
@@ -55,7 +57,6 @@ public class RivetGun : MonoBehaviour
         }
 
         GameObject go = Instantiate(rivetPrefab, position, Quaternion.identity);
-        placedRivets.Add(go.transform);
         Collider2D[] col = Physics2D.OverlapPointAll(position);
         bool hitFrame = false;
         bool hitOxygen = false;
@@ -78,18 +79,19 @@ public class RivetGun : MonoBehaviour
                 }
             }
         }
-        var hitTypes = new List<String>();
+        var hitTypes = new List<ShipMaterial>();
         if (hitFrame)
         {
-            hitTypes.Add("Frame");
+            placedRivets.Add(go.transform);
+            hitTypes.Add(ShipMaterial.Frame);
         }
         if (hitOxygen)
         {
-            hitTypes.Add("Pipe");
+            hitTypes.Add(ShipMaterial.Pipe);
         }
         if (hitElectric)
         {
-            hitTypes.Add("Wire");
+            hitTypes.Add(ShipMaterial.Wire);
         }
         if (hitTypes.Count > 0)
         {

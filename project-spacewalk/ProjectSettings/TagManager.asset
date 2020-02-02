@@ -48,6 +48,9 @@ TagManager:
   - name: SpaceStation
     uniqueID: 3569910263
     locked: 0
+  - name: BehindPanel
+    uniqueID: 1488331621
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

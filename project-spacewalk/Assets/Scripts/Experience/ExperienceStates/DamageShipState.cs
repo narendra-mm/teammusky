@@ -8,14 +8,11 @@ using UnityEngine.Timeline;
 
 namespace Experience.ExperienceState
 {
-    [RequireComponent(typeof(PlayableDirector))]
-	public class DamageWireState : MonoBehaviour, IExperienceState
+	public class DamageShipState : MonoBehaviour, IExperienceState
 	{
-        [SerializeField] private Camera _camera;
-        [SerializeField] private List<TimelinePart> _damageTimeLines;
-
-        private PlayableDirector _playableDirector;
-        private DamagablePart _partToDamange;
+        private ShipPart[] _shipParts;
+        private ExperienceStateManager _context;
+        private ShipPartType _partToDamange;
 		public void DisposeState()
 		{
 			Debug.Log($"Disposed {this.GetType()}");
@@ -25,24 +22,26 @@ namespace Experience.ExperienceState
 		{
             gameObject.SetActive(true);
             _partToDamange = GameState.instance.GetAHealthyPart();
-            var pair = _damageTimeLines.FirstOrDefault(item => item.Part == _partToDamange);
+            var pair = _shipParts.FirstOrDefault(item => item.ShipPartType == _partToDamange);
             if(pair == null)
             {
                 Debug.LogError($"Could not find a timeline of type {_partToDamange}");
             }
-            _playableDirector.playableAsset = pair.Timeline;
-            _playableDirector.Play();
-            Debug.Log($"Entered {this.GetType()}");
+            pair.PlayTimeline();
+            Debug.Log($"Playing damange {pair.ShipPartType}");
 		}
 
 		public void ExitState()
 		{
-			Debug.Log($"Exited {this.GetType()}");
+            var pair = _shipParts.FirstOrDefault(item => item.ShipPartType == _partToDamange);
+            pair.ResetTimeLine();
+            Debug.Log($"Exited {this.GetType()}");
 		}
 
 		public void InitializeState(ExperienceStateManager context)
 		{
-            _playableDirector = GetComponent<PlayableDirector>();
+            _shipParts = GetComponentsInChildren<ShipPart>();
+            _context = context;
             gameObject.SetActive(false);
 			Debug.Log($"Initialised {this.GetType()}");
 		}
@@ -55,13 +54,14 @@ namespace Experience.ExperienceState
         public void DamangeTimelineEnded()
         {
             GameState.instance.DestroyPart(_partToDamange);
+            _context.TransitionTo<FixingPanelState>();
         }
 
         [Serializable]
         public class TimelinePart
         {
-            public DamagablePart Part;
-            public TimelineAsset Timeline;
+            public ShipPart Part;
+            public PlayableDirector Director;
         }
 	}
 }

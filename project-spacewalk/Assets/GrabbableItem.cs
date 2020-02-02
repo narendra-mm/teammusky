@@ -29,6 +29,10 @@ public class GrabbableItem : MonoBehaviour
         }
     }
 
+    public bool IsGrabbed() {
+        return _isGrabbed;
+    }
+
     private void TryGrab()
     {
         if (_isGrabbing && _isOverlappingHand)

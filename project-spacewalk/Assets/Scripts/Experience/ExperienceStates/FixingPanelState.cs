@@ -9,11 +9,14 @@ namespace Experience.ExperienceState
 	{
         [SerializeField] private Transform _toolsRoot;
         [SerializeField] private RivetGun _rivetGun;
+        [SerializeField] private OxygenCounter _oxygenCounter;
+        [SerializeField] private GameObject _hud;
         // [SerializeField] private Panel _panel;
-
+        private ExperienceStateManager _context;
         private ItemController[] _tools;
         public void InitializeState(ExperienceStateManager context)
         {
+            _context = context;
 			gameObject.SetActive(false);
             Debug.Log($"Initialised {this.GetType()}");
             if(_toolsRoot == null)
@@ -23,6 +26,8 @@ namespace Experience.ExperienceState
             _tools = _toolsRoot.GetComponentsInChildren<ItemController>();
 
             _rivetGun.OnRivetPlaced = OnRivetPlaced;
+            _oxygenCounter.SetIsRunning(true);
+            _hud.active = false;
             // if(_tools == null)
             // {
             //     Debug.LogError("Tools components are missing");
@@ -35,8 +40,20 @@ namespace Experience.ExperienceState
 
         }
 
-        private void OnRivetPlaced(List<String> rivetTypes) {
-            Debug.Log(rivetTypes[0]);
+        private void OnRivetPlaced(List<ShipMaterial> rivetTypes) {
+
+            var containsWire = rivetTypes.Contains(ShipMaterial.Wire);
+            var containsPipe = rivetTypes.Contains(ShipMaterial.Pipe);
+            if (containsWire)
+            {
+                GameState.instance.DamagedMaterial = ShipMaterial.Wire;
+                _context.TransitionTo<DamageShipState>();
+            }else if (containsPipe)
+            {
+                GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
+                _context.TransitionTo<DamageShipState>();
+            }
+ 
         }
 
         public void EnterState()
@@ -46,6 +63,7 @@ namespace Experience.ExperienceState
             foreach (var tool in _tools) {
                 tool.EnableInputs();
             }
+            _hud.active = true;
         }
 
         public void UpdateState()
@@ -58,6 +76,7 @@ namespace Experience.ExperienceState
             foreach (var tool in _tools) {
                 tool.DisableInputs();
             }
+            _hud.active = false;
             // Debug.Log($"Exited {this.GetType()}");
         }
 

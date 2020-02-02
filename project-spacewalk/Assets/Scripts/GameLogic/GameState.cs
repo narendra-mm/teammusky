@@ -1,46 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceWalk.GameLogic
 {
-    public enum DamagablePart
+    public enum ShipMaterial
     {
-        Wire0,
-        Wire1,
-        Wire2,
-        Pipe0,
-        Pipe1,
-        Pipe2
+        Frame,
+        Wire,
+        Pipe
+    }
+    public enum ShipPartType
+    {
+        Part0,
+        Part1,
+        Part2,
+        Part3,
+        Part4,
+        Part5
     }
     public class GameState : MonoSingleton<GameState>
     {
-        private List<DamagablePart> _healthyParts = new List<DamagablePart>();
+        private Dictionary<ShipMaterial, List<ShipPartType>> _healthyParts = new Dictionary<ShipMaterial, List<ShipPartType>>();
         private float _oxygen;
 
+        public ShipMaterial DamagedMaterial;
         // Start is called before the first frame update
         void Start()
         {
-            foreach (DamagablePart pieceType in DamagablePart.GetValues(typeof(DamagablePart)))
-            {
-                _healthyParts.Add(pieceType);
-            }
+            _healthyParts.Add(ShipMaterial.Wire, new List<ShipPartType> { ShipPartType.Part0, ShipPartType.Part1, ShipPartType.Part2 });
+            _healthyParts.Add(ShipMaterial.Pipe, new List<ShipPartType> { ShipPartType.Part3, ShipPartType.Part4, ShipPartType.Part5 });
         }
 
-        public void DestroyPart(DamagablePart part)
+        public void DestroyPart(ShipPartType part)
         {
             for(var i = 0; i < 0; i++)
             {
-                if(_healthyParts[i] == part)
+                if(_healthyParts[DamagedMaterial][i] == part)
                 {
-                    _healthyParts.RemoveAt(i);
+                    _healthyParts[DamagedMaterial].RemoveAt(i);
                 }
             }
         }
-        public DamagablePart GetAHealthyPart()
+        public ShipPartType GetAHealthyPart()
         {
-            var random = Random.Range(0, _healthyParts.Count);
-            var part = _healthyParts[random];
-            _healthyParts.RemoveAt(random);
+            Debug.Log($"Killing {DamagedMaterial}");
+            var random = UnityEngine.Random.Range(0, _healthyParts[DamagedMaterial].Count);
+            random = 0;
+            var part = _healthyParts[DamagedMaterial][random];
+            _healthyParts[DamagedMaterial].RemoveAt(random);
             return part;
         }
     }
