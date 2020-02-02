@@ -4,49 +4,51 @@ using UnityEngine;
 
 namespace Experience
 {
-	[RequireComponent(typeof(ExperienceStateManager))]
-	public class ExperienceController : MonoBehaviour
-	{
-		public enum States
-		{
+    [RequireComponent(typeof(ExperienceStateManager))]
+    public class ExperienceController : MonoBehaviour
+    {
+        public enum States
+        {
             SplashScreen,
-			Intro,
-			Fixing,
+            Intro,
+            Fixing,
             DamageShip,
-            Outro,
-            EndScreen
-		}
+            End
+        }
 
-		public States DefaultState = States.Intro;
+        public States DefaultState = States.Intro;
 
-		private ExperienceStateManager _experienceStateManager;
+        private ExperienceStateManager _experienceStateManager;
 
-		// Start is called before the first frame update
-		void Start()
-		{
-			_experienceStateManager = GetComponent<ExperienceStateManager>();
-			var states = transform.GetComponentsInChildren<IExperienceState>();
-			_experienceStateManager.Setup(states);
+        // Start is called before the first frame update
+        void Start()
+        {
+            _experienceStateManager = GetComponent<ExperienceStateManager>();
+            var states = transform.GetComponentsInChildren<IExperienceState>();
+            _experienceStateManager.Setup(states);
 
-			switch (DefaultState)
-			{
+            switch (DefaultState)
+            {
                 case States.SplashScreen:
                     _experienceStateManager.TransitionTo<SplashScreenState>();
                     break;
-					case States.Intro:
-						_experienceStateManager.TransitionTo<IntroState>();
-						break;
-					case States.Fixing:
-						_experienceStateManager.TransitionTo<FixingPanelState>();
-					break;
+                case States.Intro:
+                    _experienceStateManager.TransitionTo<IntroState>();
+                    break;
+                case States.Fixing:
+                    _experienceStateManager.TransitionTo<FixingPanelState>();
+                    break;
                 case States.DamageShip:
+                    _experienceStateManager.TransitionTo<DamageShipState>();
+                    break;
+                case States.End:
                     _experienceStateManager.TransitionTo<DamageShipState>();
                     break;
             }
 
 
 
-			Debug.Log($"Current state is {_experienceStateManager.CurrentState.GetType()}");
-		}
-	}
+            Debug.Log($"Current state is {_experienceStateManager.CurrentState.GetType()}");
+        }
+    }
 }
