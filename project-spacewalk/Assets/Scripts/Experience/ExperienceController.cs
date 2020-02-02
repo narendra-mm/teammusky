@@ -21,7 +21,6 @@ namespace Experience
 
         private ExperienceStateManager _experienceStateManager;
 
-        // Start is called before the first frame update
         void Start()
         {
             GameState.instance.Setup();

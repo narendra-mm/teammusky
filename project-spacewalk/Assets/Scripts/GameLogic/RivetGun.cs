@@ -109,10 +109,7 @@ public class RivetGun : MonoBehaviour
             OnCorrectRivetPlaced(correctRivets.Count);
         }
         var hitTypes = new List<ShipMaterial>();
-        if (hitFrame)
-        {
-            hitTypes.Add(ShipMaterial.Frame);
-        }
+
         if (hitOxygen)
         {
             hitTypes.Add(ShipMaterial.Pipe);

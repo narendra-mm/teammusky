@@ -6,7 +6,6 @@ namespace SpaceWalk.GameLogic
 {
     public enum ShipMaterial
     {
-        Frame,
         Wire,
         Pipe
     }
@@ -29,7 +28,7 @@ namespace SpaceWalk.GameLogic
         private Dictionary<ShipMaterial, List<ShipPartType>> _healthyParts = new Dictionary<ShipMaterial, List<ShipPartType>>();
         private float _oxygen;
 
-        public ShipMaterial DamagedMaterial;
+        public ShipMaterial DamagedMaterial = ShipMaterial.Wire;
         public EndGameType EndStory;
         // Start is called before the first frame update
         public void Setup()
@@ -52,7 +51,6 @@ namespace SpaceWalk.GameLogic
         {
             Debug.Log($"Killing {DamagedMaterial}");
             var random = UnityEngine.Random.Range(0, _healthyParts[DamagedMaterial].Count);
-            random = 0;
             var part = _healthyParts[DamagedMaterial][random];
             _healthyParts[DamagedMaterial].RemoveAt(random);
             return part;

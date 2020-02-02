@@ -58,6 +58,7 @@ namespace Experience
         public T TransitionTo<T>() where T : IExperienceState
         {
             var nextState = GetState<T>();
+            NextState = nextState;
 
             if (ShowLog) Debug.Log($"[{_name}] {(CurrentState == null ? "<NONE>" : CurrentState.GetType().Name)} -> {nextState.GetType().Name}");
 
