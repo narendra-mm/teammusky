@@ -1,4 +1,5 @@
 ﻿using Experience.ExperienceState;
+using SpaceWalk.GameLogic;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ namespace Experience
         // Start is called before the first frame update
         void Start()
         {
+            GameState.instance.Setup();
             _experienceStateManager = GetComponent<ExperienceStateManager>();
             var states = transform.GetComponentsInChildren<IExperienceState>();
             _experienceStateManager.Setup(states);
