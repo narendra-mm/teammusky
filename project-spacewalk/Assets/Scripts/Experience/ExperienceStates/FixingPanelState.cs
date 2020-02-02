@@ -35,8 +35,10 @@ namespace Experience.ExperienceState
             _tools = _toolsRoot.GetComponentsInChildren<GrabbableItem>();
 
             _rivetGun.OnRivetPlaced = OnRivetPlaced;
+            _rivetGun.OnCorrectRivetPlaced = OnCorrectRivetPlaced;
             _oxygenCounter.OnOxygenDepleted = OnOxygenDepleted;
             _hud.active = false;
+            _rivetGun.Init();
 
             GameObject patchPanel = _patchPanels[UnityEngine.Random.Range(0, _patchPanels.Length)];
             GameObject frame = _frames[UnityEngine.Random.Range(0, _frames.Length)];
@@ -57,6 +59,13 @@ namespace Experience.ExperienceState
             //     tool.OnToolGrabbed += HandleToolGrabbed;
             // }
 
+        }
+
+        public int RequiredCorrectRivetCounts = 4;
+        private void OnCorrectRivetPlaced(int count) {
+            if (count >= RequiredCorrectRivetCounts) {
+                Debug.Log("Level Passed!");
+            }
         }
 
         private int health = 3;

@@ -15,14 +15,26 @@ public class RivetGun : MonoBehaviour
     [SerializeField] private GameObject gassPrefab;
 
     public Action<List<ShipMaterial>> OnRivetPlaced;
+    public Action<int> OnCorrectRivetPlaced;
 
-    List<Transform> placedRivets;
+    List<Transform> correctRivets;
+    List<Transform> allRivets;
 
     public bool EnableInputs = false;
 
+    public void Init() {
+        if(allRivets != null) {
+            foreach(var rivet in allRivets) {
+                Destroy(rivet);
+            }
+        }
+        correctRivets = new List<Transform>();
+        allRivets = new List<Transform>();
+    }
+
     void Awake()
     {
-        placedRivets = new List<Transform>();
+        Init();
     }
 
     // Start is called before the first frame update
@@ -49,7 +61,7 @@ public class RivetGun : MonoBehaviour
     {
         Vector2 position = muzzle.position;
         bool isValidPosition = true;
-        foreach (var rivet in placedRivets)
+        foreach (var rivet in correctRivets)
         {
             if ((position - (Vector2)rivet.position).magnitude < MinimumDistanceBetweenRivets)
             {
@@ -65,6 +77,7 @@ public class RivetGun : MonoBehaviour
 
         GameObject go = Instantiate(rivetPrefab, position, Quaternion.identity);
         Collider2D[] col = Physics2D.OverlapPointAll(position);
+        allRivets.Add(go.transform);
         bool hitFrame = false;
         bool hitOxygen = false;
         bool hitElectric = false;
@@ -92,7 +105,8 @@ public class RivetGun : MonoBehaviour
         }
         else {
             // Correctly placed rivet
-            placedRivets.Add(go.transform);
+            correctRivets.Add(go.transform);
+            OnCorrectRivetPlaced(correctRivets.Count);
         }
         var hitTypes = new List<ShipMaterial>();
         if (hitFrame)
