@@ -42,7 +42,7 @@ namespace Experience
                     _experienceStateManager.TransitionTo<DamageShipState>();
                     break;
                 case States.End:
-                    _experienceStateManager.TransitionTo<DamageShipState>();
+                    _experienceStateManager.TransitionTo<EndState>();
                     break;
             }
 
