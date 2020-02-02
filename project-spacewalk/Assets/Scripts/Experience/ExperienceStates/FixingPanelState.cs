@@ -90,10 +90,6 @@ namespace Experience.ExperienceState
                 GameState.instance.DamagedMaterial = ShipMaterial.Wire;
                 _context.TransitionTo<DamageShipState>();
             }
-            if (health <= 0) {
-                GameState.instance.EndStory = EndGameType.ExplodeShip;
-                _context.TransitionTo<EndState>();
-            }
         }
 
         private void OnOxygenDepleted() {
@@ -125,7 +121,10 @@ namespace Experience.ExperienceState
 
         public void UpdateState()
         {
-
+            if (health <= 0) {
+                GameState.instance.EndStory = EndGameType.ExplodeShip;
+                _context.TransitionTo<EndState>();
+            }
         }
 
         public void ExitState()
