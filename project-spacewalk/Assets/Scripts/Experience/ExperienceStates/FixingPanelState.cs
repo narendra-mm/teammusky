@@ -100,11 +100,6 @@ namespace Experience.ExperienceState
 
         public void EnterState()
         {
-            if (health <= 0) {
-                GameState.instance.EndStory = EndGameType.ExplodeShip;
-                _context.TransitionTo<EndState>();
-            }
-            
             _director.enabled = true;
             transform.position = new Vector3(0f, 0f, transform.position.z);
             gameObject.SetActive(true);
@@ -126,7 +121,10 @@ namespace Experience.ExperienceState
 
         public void UpdateState()
         {
-
+            if (health <= 0) {
+                GameState.instance.EndStory = EndGameType.ExplodeShip;
+                _context.TransitionTo<EndState>();
+            }
         }
 
         public void ExitState()
