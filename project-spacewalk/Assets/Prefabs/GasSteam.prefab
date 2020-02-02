@@ -4769,9 +4769,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleSystem: {fileID: 116696701846378397}
-  LayerName: Background
+  LayerName: Steam
   LayerOrder: -5
-  Sprite: {fileID: 0}
 --- !u!1 &227164048539778045
 GameObject:
   m_ObjectHideFlags: 0
