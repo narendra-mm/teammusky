@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tool1Mask:
-        m_Texture: {fileID: 2800000, guid: 25425610d5f2eb74095a37b9ba6da73e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5697e6891c080a346a76d8e25bf87f69, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tool2:

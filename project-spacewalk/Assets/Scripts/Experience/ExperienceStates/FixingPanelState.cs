@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Playables;
 
 namespace Experience.ExperienceState
 {
@@ -23,9 +24,11 @@ namespace Experience.ExperienceState
         // [SerializeField] private Panel _panel;
         private ExperienceStateManager _context;
         private GrabbableItem[] _tools;
+        private PlayableDirector _director;
         public void InitializeState(ExperienceStateManager context)
         {
             _context = context;
+            _director = GetComponent<PlayableDirector>();
             gameObject.SetActive(false);
             Debug.Log($"Initialised {this.GetType()}");
             if (_toolsRoot == null)
@@ -101,6 +104,7 @@ namespace Experience.ExperienceState
 
         public void EnterState()
         {
+            _director.enabled = true;
             transform.position = new Vector3(0f, 0f, transform.position.z);
             gameObject.SetActive(true);
             // Debug.Log($"Entered {this.GetType()}");

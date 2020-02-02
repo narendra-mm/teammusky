@@ -916,7 +916,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: FixingPanelState
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9017237960466820683, guid: d8d3a3bcfb4e1e248801e8956957599a, type: 3}
-    - {fileID: 9017237960820620084, guid: d8d3a3bcfb4e1e248801e8956957599a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8d3a3bcfb4e1e248801e8956957599a, type: 3}
