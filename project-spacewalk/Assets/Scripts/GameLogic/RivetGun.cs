@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using SpaceWalk.GameLogic;
 
 public class RivetGun : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class RivetGun : MonoBehaviour
     [SerializeField] private Transform muzzle;
     [SerializeField] private GameObject rivetPrefab;
 
-    public Action<List<String>> OnRivetPlaced;
+    public Action<List<ShipMaterial>> OnRivetPlaced;
 
     List<Transform> placedRivets;
 
@@ -78,19 +79,19 @@ public class RivetGun : MonoBehaviour
                 }
             }
         }
-        var hitTypes = new List<String>();
+        var hitTypes = new List<ShipMaterial>();
         if (hitFrame)
         {
             placedRivets.Add(go.transform);
-            hitTypes.Add("Frame");
+            hitTypes.Add(ShipMaterial.Frame);
         }
         if (hitOxygen)
         {
-            hitTypes.Add("Pipe");
+            hitTypes.Add(ShipMaterial.Pipe);
         }
         if (hitElectric)
         {
-            hitTypes.Add("Wire");
+            hitTypes.Add(ShipMaterial.Wire);
         }
         if (hitTypes.Count > 0)
         {

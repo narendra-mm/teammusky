@@ -11,8 +11,7 @@ namespace Experience
 		{
 			Intro,
 			Fixing,
-            DamageWire,
-            DamagePipe
+            DamageShip
 		}
 
 		public States DefaultState = States.Intro;
@@ -34,13 +33,9 @@ namespace Experience
 					case States.Fixing:
 						_experienceStateManager.TransitionTo<FixingPanelState>();
 					break;
-                case States.DamageWire:
-                    _experienceStateManager.TransitionTo<DamageWireState>();
+                case States.DamageShip:
+                    _experienceStateManager.TransitionTo<DamageShipState>();
                     break;
-                case States.DamagePipe:
-                    _experienceStateManager.TransitionTo<DamagePipeState>();
-                    break;
-
             }
 
 
