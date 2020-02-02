@@ -10,6 +10,7 @@ namespace Experience.ExperienceState
 {
 	public class DamageShipState : MonoBehaviour, IExperienceState
 	{
+        [SerializeField] private Transform _shipPartsRoot;
         private ShipPart[] _shipParts;
         private ExperienceStateManager _context;
         private ShipPartType _partToDamange;
@@ -27,6 +28,7 @@ namespace Experience.ExperienceState
             {
                 Debug.LogError($"Could not find a timeline of type {_partToDamange}");
             }
+            pair.gameObject.SetActive(true);
             pair.PlayTimeline();
             Debug.Log($"Playing damange {pair.ShipPartType}");
 		}
@@ -40,8 +42,12 @@ namespace Experience.ExperienceState
 
 		public void InitializeState(ExperienceStateManager context)
 		{
-            _shipParts = GetComponentsInChildren<ShipPart>();
+            _shipParts = _shipPartsRoot.GetComponentsInChildren<ShipPart>();
             _context = context;
+            foreach(var shipPart in _shipParts)
+            {
+                shipPart.gameObject.SetActive(false);
+            }
             gameObject.SetActive(false);
 			Debug.Log($"Initialised {this.GetType()}");
 		}

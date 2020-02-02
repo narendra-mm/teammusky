@@ -139,6 +139,7 @@ namespace Experience.ExperienceState
             _hud.active = false;
             _rivetGun.EnableInputs = false;
             _oxygenCounter.SetIsRunning(false);
+
             // Debug.Log($"Exited {this.GetType()}");
         }
 
@@ -155,6 +156,12 @@ namespace Experience.ExperienceState
         private void HandleToolGrabbed(ToolType toolType)
         {
             // _panel.SetScanMode(toolType);
+        }
+
+        [ContextMenu("Deplete Oxygen")]
+        private void DepleteOxygen()
+        {
+            _oxygenCounter.oxygenCount = 1f;
         }
     }
 }
