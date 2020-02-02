@@ -1701,7 +1701,7 @@ GameObject:
   - component: {fileID: 1101241663484491676}
   - component: {fileID: 279384377}
   m_Layer: 0
-  m_Name: RivetTool
+  m_Name: RivetGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1838,9 +1838,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acc77559a3d0384fa78be68f74adb2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinimumDistanceBetweenRivets: 3.5
+  MinimumDistanceBetweenRivets: 2.5
   muzzle: {fileID: 1101241663634090130}
   rivetPrefab: {fileID: 7875980602592214243, guid: b974dd91d771c86418b8850eeb649ccc,
+    type: 3}
+  gassPrefab: {fileID: 226312159198321483, guid: 714d3b532d74ce8449c0abf4fcfe58b7,
     type: 3}
   EnableInputs: 0
 --- !u!60 &279384377
@@ -7633,7 +7635,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!1 &8857492780092653959
 GameObject:
   m_ObjectHideFlags: 0
@@ -8478,9 +8480,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20761363, y: 0.03408765}
+  m_Offset: {x: 0.13, y: -0.08}
   serializedVersion: 2
-  m_Radius: 1.94
+  m_Radius: 2.42
 --- !u!114 &9017237960711717782
 MonoBehaviour:
   m_ObjectHideFlags: 0

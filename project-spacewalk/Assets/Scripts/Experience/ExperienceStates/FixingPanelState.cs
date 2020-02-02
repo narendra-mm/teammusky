@@ -32,7 +32,7 @@ namespace Experience.ExperienceState
             _tools = _toolsRoot.GetComponentsInChildren<ItemController>();
 
             _rivetGun.OnRivetPlaced = OnRivetPlaced;
-            _oxygenCounter.SetIsRunning(true);
+            _oxygenCounter.OnOxygenDepleted = OnOxygenDepleted;
             _hud.active = false;
 
             GameObject patchPanel = _patchPanels[UnityEngine.Random.Range(0, _patchPanels.Length)];
@@ -74,6 +74,11 @@ namespace Experience.ExperienceState
 
         }
 
+        private void OnOxygenDepleted() {
+            GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
+            _context.TransitionTo<DamageShipState>();
+        }
+
         public void EnterState()
         {
             gameObject.SetActive(true);
@@ -84,6 +89,7 @@ namespace Experience.ExperienceState
             }
             _hud.active = true;
             _rivetGun.EnableInputs = true;
+            _oxygenCounter.SetIsRunning(true);
         }
 
         public void UpdateState()
@@ -99,6 +105,7 @@ namespace Experience.ExperienceState
             }
             _hud.active = false;
             _rivetGun.EnableInputs = false;
+            _oxygenCounter.SetIsRunning(false);
             // Debug.Log($"Exited {this.GetType()}");
         }
 

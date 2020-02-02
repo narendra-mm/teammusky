@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class OxygenCounter : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class OxygenCounter : MonoBehaviour
     public float oxygenLossPerSecond = .2f;
 
     public Text text;
+
+    public Action OnOxygenDepleted;
 
     private void Awake()
     {
@@ -35,7 +38,10 @@ public class OxygenCounter : MonoBehaviour
     {
         if(_isRunning) {
             oxygenCount -= oxygenLossPerSecond * Time.fixedDeltaTime;
-            text.text = "" + Mathf.RoundToInt(oxygenCount);
+            text.text = "" + Mathf.Max(Mathf.RoundToInt(oxygenCount), 0f) + "%";
+            if(oxygenCount < 0) {
+                OnOxygenDepleted?.Invoke();
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ public class RivetGun : MonoBehaviour
 
     [SerializeField] private Transform muzzle;
     [SerializeField] private GameObject rivetPrefab;
+    [SerializeField] private GameObject gassPrefab;
 
     public Action<List<ShipMaterial>> OnRivetPlaced;
 
@@ -94,6 +95,8 @@ public class RivetGun : MonoBehaviour
         if (hitOxygen)
         {
             hitTypes.Add(ShipMaterial.Pipe);
+            GameObject gass = Instantiate(gassPrefab, position, Quaternion.identity);
+            gass.transform.eulerAngles = new Vector3(UnityEngine.Random.Range(0f, 360f), UnityEngine.Random.Range(0f,20f), 0f);
         }
         if (hitElectric)
         {
