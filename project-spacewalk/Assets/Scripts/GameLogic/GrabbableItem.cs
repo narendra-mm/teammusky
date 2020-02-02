@@ -65,6 +65,8 @@ public class GrabbableItem : MonoBehaviour
         if (lightFader != null)
         {
             lightFader.SetTargetIntensity(0);
+            _isGrabbing = false;
+            _isGrabbed = false;
         }
     }
 
