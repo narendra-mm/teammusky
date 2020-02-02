@@ -11,6 +11,8 @@ namespace Experience.ExperienceState
         [SerializeField] private RivetGun _rivetGun;
         [SerializeField] private OxygenCounter _oxygenCounter;
         [SerializeField] private GameObject _hud;
+        [SerializeField] private ArmControllerTight _arm;
+        [SerializeField] private HandAnimator _hand;
 
         [SerializeField] private GameObject[] _patchPanels;
         [SerializeField] private GameObject[] _frames;
@@ -19,7 +21,7 @@ namespace Experience.ExperienceState
 
         // [SerializeField] private Panel _panel;
         private ExperienceStateManager _context;
-        private ItemController[] _tools;
+        private GrabbableItem[] _tools;
         public void InitializeState(ExperienceStateManager context)
         {
             _context = context;
@@ -29,7 +31,7 @@ namespace Experience.ExperienceState
             {
                 Debug.LogError("Provide root transform for tools.");
             }
-            _tools = _toolsRoot.GetComponentsInChildren<ItemController>();
+            _tools = _toolsRoot.GetComponentsInChildren<GrabbableItem>();
 
             _rivetGun.OnRivetPlaced = OnRivetPlaced;
             _oxygenCounter.OnOxygenDepleted = OnOxygenDepleted;
@@ -56,27 +58,35 @@ namespace Experience.ExperienceState
 
         }
 
+        private int health = 3;
         private void OnRivetPlaced(List<ShipMaterial> rivetTypes)
         {
 
             var containsWire = rivetTypes.Contains(ShipMaterial.Wire);
             var containsPipe = rivetTypes.Contains(ShipMaterial.Pipe);
-            if (containsWire)
+            if (containsPipe)
             {
+                health--;
+                GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
+                _context.TransitionTo<DamageShipState>();
+                _oxygenCounter.AddOxygenLossPerSecond(1.5f);
+            }
+            else if (containsWire)
+            {
+                health--;
                 GameState.instance.DamagedMaterial = ShipMaterial.Wire;
                 _context.TransitionTo<DamageShipState>();
             }
-            else if (containsPipe)
-            {
-                GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
-                _context.TransitionTo<DamageShipState>();
+            if (health <= 0) {
+                GameState.instance.EndStory = EndGameType.ExplodeShip;
+                _context.TransitionTo<EndState>();
             }
-
         }
 
         private void OnOxygenDepleted() {
-            GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
-            _context.TransitionTo<DamageShipState>();
+            // GameState.instance.DamagedMaterial = ShipMaterial.Pipe;
+            GameState.instance.EndStory = EndGameType.ExplodeShip;
+            _context.TransitionTo<EndState>();
         }
 
         public void EnterState()
@@ -87,6 +97,8 @@ namespace Experience.ExperienceState
             {
                 tool.EnableInputs();
             }
+            _arm.EnableInputs();
+            _hand.EnableInputs();
             _hud.active = true;
             _rivetGun.EnableInputs = true;
             _oxygenCounter.SetIsRunning(true);
@@ -103,6 +115,8 @@ namespace Experience.ExperienceState
             {
                 tool.DisableInputs();
             }
+            _arm.DisableInputs();
+            _hand.DisableInputs();
             _hud.active = false;
             _rivetGun.EnableInputs = false;
             _oxygenCounter.SetIsRunning(false);

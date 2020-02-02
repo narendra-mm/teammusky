@@ -17,6 +17,9 @@ public class GrabbableItem : MonoBehaviour
     private bool _isOverlappingHand = false;
     private bool _isGrabbed = false;
 
+
+    private bool _enableInputs = false;
+
     private Transform _grabbedBy;
 
     // Start is called before the first frame update
@@ -30,7 +33,8 @@ public class GrabbableItem : MonoBehaviour
         }
     }
 
-    public bool IsGrabbed() {
+    public bool IsGrabbed()
+    {
         return _isGrabbed;
     }
 
@@ -43,6 +47,24 @@ public class GrabbableItem : MonoBehaviour
                 lightFader.SetTargetIntensity(_activeIntensity);
             }
             _isGrabbed = true;
+        }
+    }
+
+    public void EnableInputs()
+    {
+        _enableInputs = true;
+        if (lightFader != null && AlwaysOn)
+        {
+            lightFader.SetTargetIntensity(_activeIntensity);
+        }
+    }
+
+    public void DisableInputs()
+    {
+        _enableInputs = false;
+        if (lightFader != null)
+        {
+            lightFader.SetTargetIntensity(0);
         }
     }
 
@@ -98,17 +120,16 @@ public class GrabbableItem : MonoBehaviour
             Vector3 handRotation = _grabbedBy.rotation.eulerAngles;
             Vector3 offsetRotation = _anchor.rotation.eulerAngles;
             Vector3 newRotation = new Vector3(0f, 0f, handRotation.z - myRotation.z - (myRotation.z - offsetRotation.z));
-            Debug.Log("My: "+ myRotation + ", Hand: "+ handRotation + ", New: "+ newRotation);
-            
+
             transform.Rotate(newRotation, Space.World);
 
             Vector3 transformOffset = transform.position - _anchor.position;
 
             // Snap to position
             transform.position = new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + transformOffset;
+            // rb2D.MovePosition(new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + transformOffset);
 
             // Move to position, so we get some physic interactions
-            // rb2D.MovePosition(new Vector3(_grabbedBy.position.x, _grabbedBy.position.y, transform.position.z) + transformOffset);
         }
     }
 }

@@ -86,10 +86,17 @@ public class RivetGun : MonoBehaviour
                 }
             }
         }
+        if(hitOxygen || hitElectric || !hitFrame) {
+            // Wrong Rivet
+            go.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        else {
+            // Correctly placed rivet
+            placedRivets.Add(go.transform);
+        }
         var hitTypes = new List<ShipMaterial>();
         if (hitFrame)
         {
-            placedRivets.Add(go.transform);
             hitTypes.Add(ShipMaterial.Frame);
         }
         if (hitOxygen)

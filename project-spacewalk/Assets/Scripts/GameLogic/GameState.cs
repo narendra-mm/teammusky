@@ -35,7 +35,7 @@ namespace SpaceWalk.GameLogic
         public void Setup()
         {
             _healthyParts = new Dictionary<ShipMaterial, List<ShipPartType>>();
-            _healthyParts.Add(ShipMaterial.Pipe, new List<ShipPartType> { ShipPartType.Part3, ShipPartType.Part4, ShipPartType.Part5 });
+            _healthyParts.Add(ShipMaterial.Wire, new List<ShipPartType> { ShipPartType.Part0, ShipPartType.Part1, ShipPartType.Part2 });
             _healthyParts.Add(ShipMaterial.Pipe, new List<ShipPartType> { ShipPartType.Part3, ShipPartType.Part4, ShipPartType.Part5 });
         }
         public void DestroyPart(ShipPartType part)
