@@ -907,7 +907,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6941723874219795978}
-  m_LocalRotation: {x: -0, y: -0, z: -0.018392293, w: 0.99983084}
+  m_LocalRotation: {x: -0, y: -0, z: -0.018392175, w: 0.9998309}
   m_LocalPosition: {x: 8.579222, y: 0.0000019073486, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1167,7 +1167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6941723874823564439}
   m_LocalRotation: {x: 0.7038389, y: 0.7103597, z: 0, w: 0}
-  m_LocalPosition: {x: 4.8404107, y: 0.19349384, z: -7}
+  m_LocalPosition: {x: -1.28, y: 0.03, z: -7}
   m_LocalScale: {x: 0.84000003, y: 1.2600001, z: 1}
   m_Children: []
   m_Father: {fileID: 6941723874659128070}
@@ -1343,7 +1343,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6941723875115956063}
-  m_LocalRotation: {x: 0, y: 0, z: -0.539489, w: 0.84199274}
+  m_LocalRotation: {x: 0, y: 0, z: -0.53948903, w: 0.8419926}
   m_LocalPosition: {x: 10.897256, y: 0.0000009536743, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1366,7 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Length: 8.579225
+  m_Length: 8.579224
   m_ChildTransform: {fileID: 6941723874219795977}
   m_AttachedIK: {fileID: 6941723875305244013}
 --- !u!1 &6941723875134116934
@@ -1590,11 +1590,11 @@ MonoBehaviour:
       defaultLocalRotation: {x: 0, y: 0, z: 0.9630472, w: 0.26933283}
     - m_BoneTransform: {fileID: 6941723875115956062}
       solverPosition: {x: 0, y: 0, z: 0}
-      solverRotation: {x: 0, y: 0, z: -0.5394889, w: 0.8419927}
+      solverRotation: {x: 0, y: 0, z: -0.53948903, w: 0.8419926}
       defaultLocalRotation: {x: 0, y: 0, z: -0.540356, w: 0.84143656}
     m_Weight: 1
     m_RestoreDefaultPose: 1
-    targetPosition: {x: -22.55, y: -2.2699986, z: 0}
+    targetPosition: {x: -17.359999, y: 3.290001, z: 0}
     flip: 1
 --- !u!1 &6941723875355189434
 GameObject:
