@@ -19,12 +19,18 @@ namespace SpaceWalk.GameLogic
         Part4,
         Part5
     }
+    public enum EndGameType
+    {
+        ExplodeShip,
+        ReachMars
+    }
     public class GameState : MonoSingleton<GameState>
     {
         private Dictionary<ShipMaterial, List<ShipPartType>> _healthyParts = new Dictionary<ShipMaterial, List<ShipPartType>>();
         private float _oxygen;
 
         public ShipMaterial DamagedMaterial;
+        public EndGameType EndStory;
         // Start is called before the first frame update
         void Start()
         {

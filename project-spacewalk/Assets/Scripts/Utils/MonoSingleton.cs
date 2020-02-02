@@ -59,7 +59,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
         }
         else if (m_Instance != this)
         {
-            Debug.LogError("Another instance of " + GetType() + " is already exist! Destroying self...");
+            //Debug.LogError("Another instance of " + GetType() + " is already exist! Destroying self...");
             DestroyImmediate(this);
             return;
         }
