@@ -657,6 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a299d498de460419fd11ce5c87398c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 1101241664079837291}
   _toolsRoot: {fileID: 1101241662445045209}
   _rivetGun: {fileID: 1101241663484491676}
   _oxygenCounter: {fileID: 4268634149771906138}
@@ -2526,7 +2527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101241664079837294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.84, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1101241662145101824}
@@ -8547,7 +8548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.9887025
+  m_Length: 1.988702
   m_ChildTransform: {fileID: 9017237960495435787}
   m_AttachedIK: {fileID: 9017237960168556430}
 --- !u!1 &9017237960820620090

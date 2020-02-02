@@ -7,6 +7,7 @@ namespace Experience.ExperienceState
 {
     public class FixingPanelState : MonoBehaviour, IExperienceState
     {
+        [SerializeField] private Transform _camera;
         [SerializeField] private Transform _toolsRoot;
         [SerializeField] private RivetGun _rivetGun;
         [SerializeField] private OxygenCounter _oxygenCounter;
@@ -91,11 +92,16 @@ namespace Experience.ExperienceState
 
         public void EnterState()
         {
+            transform.position = new Vector3(0f, 0f, transform.position.z);
             gameObject.SetActive(true);
             // Debug.Log($"Entered {this.GetType()}");
             foreach (var tool in _tools)
             {
                 tool.EnableInputs();
+            }
+            var sprites = _arm.GetComponentsInChildren<SpriteRenderer>();
+            foreach(var sprite in sprites) {
+                sprite.enabled = true;
             }
             _arm.EnableInputs();
             _hand.EnableInputs();
@@ -114,6 +120,10 @@ namespace Experience.ExperienceState
             foreach (var tool in _tools)
             {
                 tool.DisableInputs();
+            }
+            var sprites = _arm.GetComponentsInChildren<SpriteRenderer>();
+            foreach(var sprite in sprites) {
+                sprite.enabled = false;
             }
             _arm.DisableInputs();
             _hand.DisableInputs();
